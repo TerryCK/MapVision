@@ -7,14 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A85002961DC9EADD00DF5136 /* PingtungTW.gpx in Resources */ = {isa = PBXBuildFile; fileRef = A85002951DC9EADD00DF5136 /* PingtungTW.gpx */; };
 		A8532D891DC999CD00A21902 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8532D881DC999CD00A21902 /* AppDelegate.swift */; };
 		A8532D8B1DC999CD00A21902 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8532D8A1DC999CD00A21902 /* ViewController.swift */; };
 		A8532D8E1DC999CD00A21902 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8532D8C1DC999CD00A21902 /* Main.storyboard */; };
 		A8532D901DC999CD00A21902 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A8532D8F1DC999CD00A21902 /* Assets.xcassets */; };
 		A8532D931DC999CD00A21902 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8532D911DC999CD00A21902 /* LaunchScreen.storyboard */; };
+		A89471C71DC9A837006FF773 /* CustomPointAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89471C61DC9A837006FF773 /* CustomPointAnnotation.swift */; };
+		A89471C91DC9B444006FF773 /* Restaurants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89471C81DC9B444006FF773 /* Restaurants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A85002951DC9EADD00DF5136 /* PingtungTW.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PingtungTW.gpx; sourceTree = "<group>"; };
 		A8532D851DC999CD00A21902 /* MapVision.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MapVision.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8532D881DC999CD00A21902 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A8532D8A1DC999CD00A21902 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +26,8 @@
 		A8532D8F1DC999CD00A21902 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A8532D921DC999CD00A21902 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A8532D941DC999CD00A21902 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A89471C61DC9A837006FF773 /* CustomPointAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPointAnnotation.swift; sourceTree = "<group>"; };
+		A89471C81DC9B444006FF773 /* Restaurants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Restaurants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +44,7 @@
 		A8532D7C1DC999CD00A21902 = {
 			isa = PBXGroup;
 			children = (
+				A85002951DC9EADD00DF5136 /* PingtungTW.gpx */,
 				A8532D871DC999CD00A21902 /* MapVision */,
 				A8532D861DC999CD00A21902 /* Products */,
 			);
@@ -56,6 +63,8 @@
 			children = (
 				A8532D881DC999CD00A21902 /* AppDelegate.swift */,
 				A8532D8A1DC999CD00A21902 /* ViewController.swift */,
+				A89471C81DC9B444006FF773 /* Restaurants.swift */,
+				A89471C61DC9A837006FF773 /* CustomPointAnnotation.swift */,
 				A8532D8C1DC999CD00A21902 /* Main.storyboard */,
 				A8532D8F1DC999CD00A21902 /* Assets.xcassets */,
 				A8532D911DC999CD00A21902 /* LaunchScreen.storyboard */,
@@ -125,6 +134,7 @@
 			files = (
 				A8532D931DC999CD00A21902 /* LaunchScreen.storyboard in Resources */,
 				A8532D901DC999CD00A21902 /* Assets.xcassets in Resources */,
+				A85002961DC9EADD00DF5136 /* PingtungTW.gpx in Resources */,
 				A8532D8E1DC999CD00A21902 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -136,7 +146,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A89471C91DC9B444006FF773 /* Restaurants.swift in Sources */,
 				A8532D8B1DC999CD00A21902 /* ViewController.swift in Sources */,
+				A89471C71DC9A837006FF773 /* CustomPointAnnotation.swift in Sources */,
 				A8532D891DC999CD00A21902 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -299,6 +311,7 @@
 				A8532D991DC999CD00A21902 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
