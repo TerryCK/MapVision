@@ -19,8 +19,7 @@ class Rastaurants {
     var restaurant:restaurant{
         return _restaurant
     }
-    var _restaurant:restaurant = restaurant(name: "", longitude: 0.0, latitude: 0.0)
-    
+    var _restaurant:restaurant = restaurant(name: "", location: Rastaurants.locate.init(longitude: 0.0, latitude: 0.0), place_id: "", vicinity: "")
 
     typealias DownloadComplete = () -> ()
     
@@ -29,13 +28,13 @@ class Rastaurants {
         
         //demo Data
         _restaurant.name = "first"
-        _restaurant.latitude = 22.679248
-        _restaurant.longitude = 120.4861926
+        _restaurant.location?.latitude = 22.679248
+        _restaurant.location?.longitude = 120.4861926
         array.append(_restaurant)
         
         _restaurant.name = "second"
-        _restaurant.latitude = 22.669248
-        _restaurant.longitude = 120.4961926
+        _restaurant.location?.latitude = 22.669248
+        _restaurant.location?.longitude = 120.4961926
         array.append(_restaurant)
         
         
@@ -48,29 +47,29 @@ class Rastaurants {
     
     struct restaurant {
         
-        var name: String?
-        var longitude:Double
-        var latitude:Double
+        var name        : String?
+        var location    : locate?
+        var place_id    : String?
+        var vicinity    : String?
+        
 
-        
-//        var type:String?
-        
-//        var location:CLLocationCoordinate2D?
-//
-//        static func deserialize(_ node: XMLIndexer) throws -> Station { return try Station(
-//            name: node["StationName"].value(),
-//            location: node["StationAddress"].value(),
-//            parkNumber: node["StationNums2"].value(),
-//            currentBikeNumber: node["StationNums1"].value(),
-//            //                        longitude: node["StationLon"].value(),
-//            //                        latitude: node["StationLat"].value()
-//            longitude: node["StationLat"].value(),
-//            latitude: node["StationLon"].value()
-//            
-//            )
-//        }
     }
     
     
+    struct food {
+        var id          : Int16?
+        var name        : String?
+        var place_id    : String?
+        var price       : Double?
+        var url         : String?
+    }
+    
+    struct locate {
+        
+        var longitude   : Double
+        var latitude    : Double
+        
+    }
+
 
 }
