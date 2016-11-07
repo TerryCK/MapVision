@@ -19,9 +19,10 @@ class ViewController: UIViewController, MKMapViewDelegate {
     
     
     // get the array of every single restaurant
-    var restaurants = Rastaurants()
-    var restaurant:Rastaurants.restaurant?
-   
+//    var restaurants = v1API()
+//    var restaurant:Rastaurants.restaurant?
+    var API = v1API()
+    var restaurants:[restaurant?] = []
     
     //mapview
     var selectedPin: MKPlacemark?
@@ -30,8 +31,8 @@ class ViewController: UIViewController, MKMapViewDelegate {
     
     //location
     var myLocationManager: CLLocationManager!
-    var location = CLLocationCoordinate2D()
-    
+    var location = CLLocationCoordinate2D() //current location for annotation
+    var currentLocation:locate?
     
     
     
@@ -40,17 +41,68 @@ class ViewController: UIViewController, MKMapViewDelegate {
         super.viewDidLoad()
          print("view did load")
         mapViewInfoCustomize()
-         initializeLocationManager()
+        initializeLocationManager()
         authrizationStatus()
         
+        print("currentLocation: \(self.currentLocation)")
         
-    let downloadData = restaurants.downloadData
+        //25.0037154
+        //121.5145271
+        // GET /v1/reataurant
+        API.getNearbyRestaurantList(Latitude:Float(self.location.latitude), Longitude: Float(self.location.longitude), callback: {(resList)->Void in
+            for res in resList!
+            {
+                self.restaurants.append(res)
+            }
+            self.handleAnnotationInfo()
+        })
+        
+        
+        
+        // API
+        // GET /v1/search
+//        print("API.getNearbyRestaurant")
+//        API.getNearbyRestaurant(Latitude: 25.0037154,
+//                                Longitude: 121.5145271,
+//                                callback:
+//            {(res,foo)->Void in
+//                print("****************")
+//                print("res: \(res)")
+//                print("****************")
+//                self.restaurants.append(res)
+//                self.restaurants.append(res)
+//                self.handleAnnotationInfo()
+//                print("self.restaurant: \(self.restaurants)")
+////                print("res, name:\(res?.name), local:(\(res?.location?.longitude),\(res?.location?.latitude)), placeid:\(res?.place_id), vicinty:\(res?.vicinity) \n");
+//                //
+//                //
+//                //                print("food, id:\(foo?.id), name:\(foo?.name), placeid:\(foo?.place_id), price:\(foo?.price), url:\(foo?.url) \n");
+//        });
+        
+        // GET /v1/search/action
+//        print("API.furtherAction")
+//        API.furtherAction(Latitude: 25.023696,
+//                          Longitude: 121.5252311,
+//                          place_id: "ChIJN5RMH5CpQjQRAoN8D1LuNeM",
+//                          food_id: "f000003",
+//                          action: enjoy_status_action.dislike,
+//                          callback:
+//            {(res,foo)->Void in
+//                print("res, name:\(res?.name), local:(\(res?.location?.longitude),\(res?.location?.latitude)), placeid:\(res?.place_id), vicinty:\(res?.vicinity) \n");
+//                
+//                
+//                print("food, id:\(foo?.id), name:\(foo?.name), placeid:\(foo?.place_id), price:\(foo?.price), url:\(foo?.url) \n");
+//        });
+        
+        
+        //
+//    let downloadData = restaurants.downloadData
        
         
-    downloadData(){
-        print()
-         self.handleAnnotationInfo()
-                }
+//    downloadData(){
+//        print()
+        
+//                }
     }
     
     
@@ -78,7 +130,7 @@ class ViewController: UIViewController, MKMapViewDelegate {
     
     func handleAnnotationInfo() {
         
-        let restaurants = self.restaurants.restaurants
+        let restaurants = self.restaurants
         
         var location = CLLocationCoordinate2D()
         location = self.location
@@ -93,9 +145,10 @@ class ViewController: UIViewController, MKMapViewDelegate {
             let objectAnnotation = CustomPointAnnotation()
             
             //get coordinate and distance for display on the map
-            let latitude:CLLocationDegrees = Double(restaurants[index].latitude)
-            let longitude:CLLocationDegrees = Double(restaurants[index].longitude)
-            
+//            let latitude:CLLocationDegrees = Double(restaurants[index].latitude)
+//            let longitude:CLLocationDegrees = Double(restaurants[index].longitude)
+            let latitude:CLLocationDegrees = Double((restaurants[index]?.location?.latitude)!)
+            let longitude:CLLocationDegrees = Double((restaurants[index]?.location?.longitude)!)
                 //get restaurant location of coordinat
             let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
             objectAnnotation.coordinate = coordinate
@@ -110,7 +163,7 @@ class ViewController: UIViewController, MKMapViewDelegate {
             objectAnnotation.distance = distanceInKm
             
             //get name for title of apple map navigation
-            if let name = restaurants[index].name {
+            if let name = restaurants[index]?.name {
                 let placemark = MKPlacemark(coordinate: coordinate, addressDictionary:[name: ""])
                
                 objectAnnotation.placemark = placemark
@@ -123,7 +176,7 @@ class ViewController: UIViewController, MKMapViewDelegate {
             
             objectAnnotation.imageName = UIImage(named: "rice")
             
-            if let name = restaurants[index].name {
+            if let name = restaurants[index]?.name {
                 objectAnnotation.title = name
             }
                 //print("\(objectAnnotation.title!), name:\(name)")
@@ -272,9 +325,12 @@ extension ViewController {
             location.longitude = Double(current.coordinate.longitude)
             print("取得使用者GPS位置")
         }else{
-            
-            location.latitude = 22.669248
-            location.longitude = 120.4861926
+//            Latitude: 25.0037154,
+//            Longitude: 121.5145271,
+            location.latitude = 25.0037154
+            location.longitude = 121.5145271
+//            location.latitude = 22.669248
+//            location.longitude = 120.4861926
             print("無法取得使用者位置、改取得屏東火車站GPS位置")
         }
         
@@ -338,7 +394,7 @@ extension ViewController: CLLocationManagerDelegate {
         let myLocation:MKUserLocation = mapView.userLocation
         myLocation.title = "😏目前位置"
         
-        setCurrentLocation(latDelta: 0.03, longDelta: 0.03)
+        setCurrentLocation(latDelta: 0.05, longDelta: 0.05)
     }
     
     
